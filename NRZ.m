@@ -17,7 +17,7 @@ N=length(b);
 %--------------------------------------
 a=ones(N,1)*A;
 for i =1:N,
-    if b(i)==0
+    if b(i)==0 %NRZ : bit(i) = 0 ? -> amplitude = -A (default: sinon amplitude = A)
         a(i)=-A;
     end
 end

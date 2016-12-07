@@ -15,7 +15,7 @@ fb = fe/fe_sur_fb;
 A=3;    %amplitude des raies
 
 yNRZ=NRZ(bits, A, fe_sur_fb);
-%yBiph=Biphase(...);
+yBiph=Biphase(bits, A, fe_sur_fb);
 %yBipNRZ=BipolaireNRZ(...);
 
 %Tracé des signaux
@@ -29,21 +29,22 @@ subplot(411);stem(temps_bits,bits);xlabel('Suite binaire');
 grid
 subplot(412);plot(temps_signal,yNRZ);xlabel('Signal NRZ');
 grid
-%subplot(413);plot(temps_signal(1:Naff),yBiph(1:Naff));xlabel('Signal Biphase');
-%grid
+subplot(413);plot(temps_signal(1:Naff),yBiph(1:Naff));xlabel('Signal Biphase');
+grid
 %subplot(414);plot(temps_signal(1:Naff),yBipNRZ(1:Naff));xlabel('Signal Bipolaire-NRZ');
 %grid
 
 %Estimation et tracé des densités spectrales de puissance
 %---------------------------------------------------------
-[S_NRZ,f]=pwelch(yNRZ, blackman(512), 0, 512, fe);
-%[S_Biph,f]=...;
+Nfft = 512;
+[S_NRZ,f]=pwelch(yNRZ, blackman(Nfft), 0, Nfft, fe);
+[S_Biph,f]=pwelch(yBiph, blackman(Nfft), 0, Nfft, fe);
 %[S_BipNRZ,f]=...;
 
 f = [0:length(S_NRZ)-1]*fe/(2*length(S_NRZ));
 figure(2);
 plot(f,S_NRZ);
-%hold on;plot(f,S_Biph,'r');
+hold on;plot(f,S_Biph,'r');
 %hold on;plot(f,S_BipNRZ,'g');
 legend('Dsp du signal codé NRZ');%,'Dsp du signal codé Biphase','Dsp du signal codé Bipolaire NRZ');
 grid

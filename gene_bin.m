@@ -2,7 +2,7 @@ function bits=gene_bin(N,p0,flag);
 %
 %function bits=gene_bin(N,p0,flag);
 %
-% Cette fonction génère une suite binaire aleatoire.
+% Cette fonction gÃ©nÃ¨re une suite binaire aleatoire.
 % Les valeurs binaires sont +1 et -1 si flag=1 et 0 et 1 si flag=0.
 % p0 = proba(0);
 % N = nombre de la suite

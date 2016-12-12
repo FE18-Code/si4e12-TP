@@ -4,16 +4,16 @@ function x = NRZ(b,A,Nech_par_bit)
 %function x = NRZ(b,A,Nech_par_bit)
 %
 %Code NRZ
-%b est la suite binaire à coder
+%b est la suite binaire Ã  coder
 %A est l'amplitude des raies
 %Nech_par_bit est le rapport Tb/Te=Fe/Fb
-%x est la suite codée
+%x est la suite codÃ©e
 %---------------------------------------
 
 N=length(b);
 %--------------------------------------
-%1- Association d'amplitude à chaque bit
-%(chaque bit est de durée Tb=1/Fb)
+%1- Association d'amplitude Ã  chaque bit
+%(chaque bit est de durÃ©e Tb=1/Fb)
 %--------------------------------------
 a=ones(N,1)*A;
 for i =1:N,
@@ -25,14 +25,14 @@ end
 %--------------------------------------------
 %2- Passage dans le filtre de mise en forme 
 %(on associe donc un signal discret dont 
-% les échantillons sont espacés de Te=1/Fe)
+% les Ã©chantillons sont espacÃ©s de Te=1/Fe)
 %---------------------------------------------
-%association Nech_par_bit échantillons à chaque bit
+%association Nech_par_bit Ã©chantillons Ã  chaque bit
 Nech_tot = N*Nech_par_bit;
 at=zeros(Nech_tot,1);
 at(1:Nech_par_bit:Nech_tot)=a;
-%réponse impulsionnelle du filtre rectangulaire
+%rÃ©ponse impulsionnelle du filtre rectangulaire
 s=ones(1,Nech_par_bit);
-%signal filtré
+%signal filtrÃ©
 x=filter(s,1,at);
 

@@ -1,11 +1,11 @@
 close all;
 clear all;
 
-%Génération d'une suite binaire (à compléter)
+%GÃ©nÃ©ration d'une suite binaire (Ã  complÃ©ter)
 %---------------------------------------------
 N = 1000;                  %N est la longueur de la suite binaire
-p0 = 0.5;                 %p0 est la probabilité de la valeur binaire 0
-bits=gene_bin(N, p0, 0);       %la suite binaire à coder est à valeurs dans {0,1}
+p0 = 0.5;                 %p0 est la probabilitÃ© de la valeur binaire 0
+bits=gene_bin(N, p0, 0);       %la suite binaire Ã  coder est Ã  valeurs dans {0,1}
 
 %Codage en ligne
 %----------------
@@ -18,7 +18,7 @@ yNRZ=NRZ(bits, A, fe_sur_fb);
 yBiph=Biphase(bits, A, fe_sur_fb);
 %yBipNRZ=BipolaireNRZ(...);
 
-%Tracé des signaux
+%TracÃ© des signaux
 %-------------------
 Naff = 100;
 temps_bits = [0:N-1]*1/fb;     %vecteur temps pour la suite de bits
@@ -34,7 +34,7 @@ grid
 %subplot(414);plot(temps_signal(1:Naff),yBipNRZ(1:Naff));xlabel('Signal Bipolaire-NRZ');
 %grid
 
-%Estimation et tracé des densités spectrales de puissance
+%Estimation et tracÃ© des densitÃ©s spectrales de puissance
 %---------------------------------------------------------
 Nfft = 512;
 [S_NRZ,f]=pwelch(yNRZ, blackman(Nfft), 0, Nfft, fe);
@@ -46,6 +46,6 @@ figure(2);
 plot(f,S_NRZ);
 hold on;plot(f,S_Biph,'r');
 %hold on;plot(f,S_BipNRZ,'g');
-legend('Dsp du signal codé NRZ');%,'Dsp du signal codé Biphase','Dsp du signal codé Bipolaire NRZ');
+legend('Dsp du signal codÃ© NRZ');%,'Dsp du signal codÃ© Biphase','Dsp du signal codÃ© Bipolaire NRZ');
 grid
 
